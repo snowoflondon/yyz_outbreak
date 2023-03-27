@@ -36,8 +36,13 @@ fluidPage(
                shinycssloaders::withSpinner(color = "#0dc5c1"),
              plotOutput(outputId = 'Plot5') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1"),
-             DT::dataTableOutput(outputId = 'Table') %>%
+             plotOutput(outputId = 'Plot6') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1")
            ))
+  ),
+  fluidRow(
+    column(width = 12,
+           DT::dataTableOutput(outputId = 'Table') %>%
+             shinycssloaders::withSpinner(color = "#0dc5c1"))
   )
 )
