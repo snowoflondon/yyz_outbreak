@@ -107,14 +107,22 @@ server <- function(input, output){
     print(p)
   })
   
+  output$Plot6 <- renderPlot({
+    p <- ggplot(react_data(), aes(x = `Causative Agent-1`, y = `Duration in Days`)) +
+      geom_boxplot(aes(fill = `Causative Agent-1`), alpha = .6) +
+      coord_flip() + geom_point(size = .5) + xlab('') +
+      theme_minimal() + theme(legend.position = 'none',
+                              text = element_text(size = 14)) +
+      scale_fill_manual(values = mycols(length(unique(react_data()$`Causative Agent-1`))))
+    print(p)
+  })
+  
   output$Table <- DT::renderDataTable(
     caption = htmltools::tags$caption(style = 'caption-side: top;
                                               text-align: center;
                                               color:black;
                                               font-size:150% ;',
-                                      'Summary Table'),
-    options = list("pageLength" = 3),
-    {
+                                      'Summary Table'), {
       react_data() %>% dplyr::select(`Institution Name`, `Outbreak Setting`,
                                      `Type of Outbreak`, `Causative Agent-1`,
                                      `Causative Agent-2`, `Date Outbreak Began`,
