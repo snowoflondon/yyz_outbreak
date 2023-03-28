@@ -2,13 +2,22 @@ library(shinythemes)
 library(shinycssloaders)
 library(magrittr)
 library(DT)
+library(bslib)
 
 yr_choices <- seq(2016, 2023, by = 1)
 
+theme <- bslib::bs_theme(
+  bg = "#f4f7f9", fg = "#252e3c",
+  primary = "#7da0c1", secondary = "#7da0c1",
+  base_font = font_google("Roboto Serif", local = TRUE),
+  code_font = c("Courier", "monospace"),
+  heading_font = font_google("Roboto Serif", local = TRUE),
+  "input-border-color" = "#f1ebdd"
+)
+
 fluidPage(
-  theme = shinytheme('sandstone'),
-  titlePanel(div('YYZ Outbreaks by snowoflondon',
-                 style = "color: #1c1c1c; font-family:'Avanta Garde"),
+  theme = theme,
+  titlePanel('YYZ Outbreaks by snowoflondon',
              windowTitle = 'YYZ Outbreaks'),
   fluidRow(
     column(width = 2,
