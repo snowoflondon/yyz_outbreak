@@ -45,7 +45,8 @@ server <- function(input, output){
                  aes(fill = `Type of Outbreak`), alpha = .8) + 
         theme_minimal() +
         theme(text = element_text(size = 14),
-              legend.position = 'none') +
+              legend.position = 'none',
+              plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
         labs(title = 'Types of Outbreaks') +
         xlab('') + ylab('# of occurrences') +
         scale_fill_manual(values = mycols(length(unique(react_data()$`Type of Outbreak`))))
@@ -56,7 +57,8 @@ server <- function(input, output){
     p <- ggplot(react_data(), aes(x = as.numeric(`Duration in Days`))) +
         geom_histogram(binwidth = 1, col = 'black') +
         theme_minimal() +
-        theme(text = element_text(size = 14)) +
+        theme(text = element_text(size = 14),
+              plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
         xlab('Duration in Days') +
         ylab('Frequency') +
         labs(title = 'Duration of Outbreak (Days)')
@@ -70,7 +72,8 @@ server <- function(input, output){
         theme_minimal() +
         theme(text = element_text(size = 14),
               legend.position = 'none',
-              axis.text.x = element_text(angle = 90)) +
+              axis.text.x = element_text(angle = 90),
+              plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
         labs(title = 'Primary Causative Agent') +
         xlab('') + ylab('# of occurrences') +
         scale_fill_manual(values = mycols(length(unique(react_data()$`Causative Agent-1`))))
@@ -84,7 +87,8 @@ server <- function(input, output){
         theme_minimal() +
         theme(text = element_text(size = 14),
               legend.position = 'none',
-              axis.text.x = element_text(angle = 90)) +
+              axis.text.x = element_text(angle = 90),
+              plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
         labs(title = 'Outbreak Settings') +
         xlab('') + ylab('# of occurrences') +
         scale_fill_manual(values = mycols(length(unique(react_data()$`Outbreak Setting`))))
@@ -101,7 +105,8 @@ server <- function(input, output){
                        y = 0, yend = avg_duration)) +
       geom_point(size = 8, color = 'red') + coord_flip() +
       theme_minimal() +
-      theme(text = element_text(size = 14)) +
+      theme(text = element_text(size = 14),
+            plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
       xlab('') + ylab('Mean duration in days') +
       scale_fill_manual(values = mycols(length(unique(data$`Causative Agent-1`))))
     print(p)
@@ -112,7 +117,8 @@ server <- function(input, output){
       geom_boxplot(aes(fill = `Causative Agent-1`), alpha = .6) +
       coord_flip() + geom_point(size = .5) + xlab('') +
       theme_minimal() + theme(legend.position = 'none',
-                              text = element_text(size = 14)) +
+                              text = element_text(size = 14),
+                              plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
       scale_fill_manual(values = mycols(length(unique(react_data()$`Causative Agent-1`))))
     print(p)
   })
