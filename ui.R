@@ -32,20 +32,20 @@ fluidPage(
            )),
     column(width = 5,
            verticalLayout(
-             plotOutput(outputId = 'Plot1') %>%
+             plotlyOutput(outputId = 'Plot1') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1"),
-             plotOutput(outputId = 'Plot2') %>%
+             plotlyOutput(outputId = 'Plot2') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1"),
-             plotOutput(outputId = 'Plot3') %>%
+             plotlyOutput(outputId = 'Plot3') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1"))
            ),
     column(width = 5,
            verticalLayout(
-             plotOutput(outputId = 'Plot4') %>%
+             plotlyOutput(outputId = 'Plot4') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1"),
-             plotOutput(outputId = 'Plot5') %>%
+             plotlyOutput(outputId = 'Plot5') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1"),
-             plotOutput(outputId = 'Plot6') %>%
+             plotlyOutput(outputId = 'Plot6') %>%
                shinycssloaders::withSpinner(color = "#0dc5c1")
            ))
   ),
