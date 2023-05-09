@@ -17,6 +17,7 @@ The Shiny app `YYZ Outbreaks` produces a high-level visual summary of the outbre
 * `DT`
 * `shinycssloaders`
 * `bslib`
+* `plotly`
 
 ## R session info
 ```{r}
