@@ -2,7 +2,6 @@ library(tidyverse)
 library(htmltools)
 library(DT)
 library(RColorBrewer)
-library(plotly)
 
 url_list <- list(
   'https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/80ce0bd7-adb2-4568-b9d7-712f6ba38e4e/resource/04e2a0e8-364e-4853-be7c-108771616800/download/ob_report_2016.csv',
@@ -40,7 +39,7 @@ server <- function(input, output){
     return(df)
   })
   
-  output$Plot1 <- renderPlotly({
+  output$Plot1 <- renderPlot({
     p <- ggplot(react_data(), aes(x = fct_infreq(`Type of Outbreak`))) +
         geom_bar(stat = 'count',
                  aes(fill = `Type of Outbreak`), alpha = .8) + 
@@ -51,11 +50,10 @@ server <- function(input, output){
         labs(title = 'Types of Outbreaks') +
         xlab('') + ylab('# of occurrences') +
         scale_fill_manual(values = mycols(length(unique(react_data()$`Type of Outbreak`))))
-    p <- ggplotly(p)
     print(p)
   })
   
-  output$Plot3 <- renderPlotly({
+  output$Plot3 <- renderPlot({
     p <- ggplot(react_data(), aes(x = as.numeric(`Duration in Days`))) +
         geom_histogram(binwidth = 1, col = 'black') +
         theme_minimal() +
@@ -64,11 +62,10 @@ server <- function(input, output){
         xlab('Duration in Days') +
         ylab('Frequency') +
         labs(title = 'Duration of Outbreak (Days)')
-    p <- ggplotly(p)
     print(p)
   })
   
-  output$Plot2 <- renderPlotly({
+  output$Plot2 <- renderPlot({
     p <- ggplot(react_data(), aes(x = fct_infreq(`Causative Agent-1`))) +
         geom_bar(stat = 'count', 
                  aes(fill = `Causative Agent-1`), alpha = .8) +
@@ -80,7 +77,6 @@ server <- function(input, output){
         labs(title = 'Primary Causative Agent') +
         xlab('') + ylab('# of occurrences') +
         scale_fill_manual(values = mycols(length(unique(react_data()$`Causative Agent-1`))))
-    p <- ggplotly(p)
     print(p)
   })
   
@@ -100,7 +96,7 @@ server <- function(input, output){
     print(p)
   })
   
-  output$Plot5 <- renderPlotly({
+  output$Plot5 <- renderPlot({
     data <- react_data() %>% group_by(`Causative Agent-1`) %>%
       summarise(avg_duration = mean(`Duration in Days`))
     p <- ggplot(data, 
@@ -114,11 +110,10 @@ server <- function(input, output){
             plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
       xlab('') + ylab('Mean duration in days') +
       scale_fill_manual(values = mycols(length(unique(data$`Causative Agent-1`))))
-    p <- ggplotly(p)
     print(p)
   })
   
-  output$Plot6 <- renderPlotly({
+  output$Plot6 <- renderPlot({
     p <- ggplot(react_data(), aes(x = `Causative Agent-1`, y = `Duration in Days`)) +
       geom_boxplot(aes(fill = `Causative Agent-1`), alpha = .6) +
       coord_flip() + geom_point(size = .5) + xlab('') +
@@ -126,7 +121,6 @@ server <- function(input, output){
                               text = element_text(size = 14),
                               plot.background = element_rect(fill = '#f4f7f9', color = NA)) +
       scale_fill_manual(values = mycols(length(unique(react_data()$`Causative Agent-1`))))
-    p <- ggplotly(p)
     print(p)
   })
   
